@@ -133,13 +133,8 @@ const Rides = ({ route, isRidesVisible, openRides, closeRides }) => {
     };
 
     const filteredTrips = trips.filter((trip) => {
-        const origin = route.origin.toLowerCase();
-        const destination = route.destination.toLowerCase();
         return (
-            trip.driver !== auth?.username &&
-            trip.passengers.length < trip.seats_available &&
-            (trip.origin.toLowerCase().includes(origin) ||
-                trip.destination.toLowerCase().includes(destination))
+            trip.passengers.length < trip.seats_available
         );
     });
 
@@ -151,12 +146,21 @@ const Rides = ({ route, isRidesVisible, openRides, closeRides }) => {
                 <p className='text-xs truncate'>{trip.origin}</p>
                 <p className='text-xs truncate'>{trip.destination}</p>
             </div>
-            <button
-                className='text-sm mx-auto py-1 px-4 rounded-3xl bg-green-500 hover:scale-95'
-                onClick={() => handleOpenDisplayJoin(trip)}
-            >
-                Join
-            </button>
+            {trip.driver === auth?.username ? (
+                <button
+                    className='text-sm mx-auto py-1 px-4 rounded-3xl bg-gray-500 cursor-not-allowed'
+                    disabled
+                >
+                    Your Trip
+                </button>
+            ) : (
+                <button
+                    className='text-sm mx-auto py-1 px-4 rounded-3xl bg-green-500 hover:scale-95'
+                    onClick={() => handleOpenDisplayJoin(trip)}
+                >
+                    Join
+                </button>
+            )}
         </div>
     ));
 
