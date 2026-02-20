@@ -1,4 +1,4 @@
-# 🚗 CoRide Web Application
+# 🚗 RideShare Web Application
 
 A **full-stack ridesharing web application** built using the **MERN stack (MongoDB, Express.js, React.js, and Node.js)**. The platform allows users to coordinate rides with friends or others traveling to similar destinations. Key features include trip creation, ride requests, and user profile management.
 
